@@ -1,12 +1,14 @@
-import re
+from collections import deque
 
+data = list(map(int, input().split()))
+fifo = deque()
+fifo.extend(data)
+print(fifo)
+q_answer = []
 
-def domain_name(url: str) -> str:
-    u = re.sub(r"(?:www.)|(?:https://)|(?:http://)", r"", url)
+for i in range(3):
+    q_answer.append(fifo.popleft())
 
-    u = re.sub(r"\..*", r"", u)
-    return u
+print(*q_answer)
 
-
-print(domain_name('https://youtube.com'))
-print(domain_name('http://codewars'))
+assert fifo == deque([1, 2, 3, 4, 5]), "Все хорошо"

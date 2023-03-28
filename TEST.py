@@ -1,14 +1,19 @@
 from collections import deque
 
-data = list(map(int, input().split()))
-fifo = deque()
-fifo.extend(data)
-print(fifo)
-q_answer = []
 
-for i in range(3):
-    q_answer.append(fifo.popleft())
+def get_sub_eq(eq_str):
+    st = deque()
+    res = []
 
-print(*q_answer)
+    for i, s in enumerate(eq_str):
+        if s in ('(', '['):
+            st.append(i)
+        elif s in (')', ']'):
+            res.append(eq_str[st.pop() + 1:i])
 
-assert fifo == deque([1, 2, 3, 4, 5]), "Все хорошо"
+    return res
+
+
+s = "2 + 3 * (1 - 5 - (3 * x - 5)) + (a - b)"
+res = get_sub_eq(s)
+print(res)

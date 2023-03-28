@@ -1,7 +1,16 @@
-from collections import deque
+def get_sub_eq(eq_str):
+    st = []
+    res = []
 
-lifo = []
-data = list(map(int, input().split()))
-lifo.extend(data)
+    for i, x in enumerate(eq_str):
+        if x == "(":
+            st.append(i)
+        elif x == ")":
+            res.append(eq_str[st.pop() + 1:i])
 
-print(*[lifo.pop() for _ in range(2)])
+    return res
+
+
+s = "2 + 3 * (1 - 5 - (3 * x - 5)) + (a - b)"
+res = get_sub_eq(s)
+print(res)

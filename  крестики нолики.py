@@ -2,9 +2,9 @@ from random import sample
 
 
 class TicTacToe:
-    FREE_CELL = 0      # свободная клетка
-    HUMAN_X = 1        # крестик (игрок - человек)
-    COMPUTER_O = 2     # нолик (игрок - компьютер)
+    FREE_CELL = 0  # свободная клетка
+    HUMAN_X = 1  # крестик (игрок - человек)
+    COMPUTER_O = 2  # нолик (игрок - компьютер)
 
     def __init__(self):
         self.pole = tuple(tuple(Cell() for i in range(3)) for _ in range(3))
@@ -23,7 +23,8 @@ class TicTacToe:
 
     def show(self):
         for i in self.pole:
-            print(*[j.value for j in i])
+            print(*["|" + str(j.value) + "|" for j in i])
+        print("_" * 11)
 
     def human_go(self):
         coords = tuple(map(int, input('Введите координаты').split()))
@@ -32,7 +33,7 @@ class TicTacToe:
     def computer_go(self):
         while True:
             indx = tuple(sample((0, 1, 2), 2))
-            if self[indx]:
+            if not self[indx]:
                 self[indx] = self.COMPUTER_O
                 break
 
@@ -100,6 +101,7 @@ class TicTacToe:
 
 
 class Cell:
+
     def __init__(self):
         self.value = 0
 
@@ -119,7 +121,6 @@ while game:
         game.computer_go()
 
     step_game += 1
-
 
 game.show()
 

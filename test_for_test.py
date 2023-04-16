@@ -1,16 +1,6 @@
-def get_sub_eq(eq_str):
-    st = []
-    res = []
+from random import randint
 
-    for i, x in enumerate(eq_str):
-        if x == "(":
-            st.append(i)
-        elif x == ")":
-            res.append(eq_str[st.pop() + 1:i])
+a = [["#" for _ in range(10)] for _ in range(10)]
 
-    return res
-
-
-s = "2 + 3 * (1 - 5 - (3 * x - 5)) + (a - b)"
-res = get_sub_eq(s)
-print(res)
+for i in a:
+    print(' '.join(i))
